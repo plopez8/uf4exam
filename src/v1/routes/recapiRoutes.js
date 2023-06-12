@@ -1,24 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const playerController = require('../../controllers/playerController');
-const gameController = require('../../controllers/gameController');
+const flyController = require('../../controllers/flyController');
+const ticketController = require('../../controllers/ticketController');
 
 router
-    .post('/jugadors', playerController.createNewPlayer)
-    .post('/partides', gameController.createNewGame)
-
-    .get('/jugadors', playerController.getAllPlayers)
-    .get('/partides', gameController.getAllGames)
-
-    .get('/jugadors/:id', playerController.getOnePlayer)
-    .get('/partides/:id', gameController.getOneGame)
+    .post('/vols', flyController.createNewFly)
+    .post('/bitllet', ticketController.createNewTicket)
     
-    .patch('/jugadors/:id', playerController.updatePlayer)
-    .patch('/partides/:id', gameController.updateGame)
-    
-    .delete('/jugadors/:id', playerController.deletePlayer)
-    .delete('/partides/:id', gameController.deleteGame)
 
-    .get('/jugadors/:id/partides', playerController.getPlayerGames)
+
+    .get('/vols', flyController.getAllFlys)
+    .get('/bitllet/:id', ticketController.getOneTicket)
+    
+    .patch('/bitllet/:id', ticketController.updateTicket)
+    
+    .delete('/bitllet/:id', ticketController.deleteTicket)
+    .delete('/vols/:id', flyController.deleteFly)
+
+    .get('/vols/:id/bitllet', flyController.getFlyTickets)
     
 module.exports = router;
